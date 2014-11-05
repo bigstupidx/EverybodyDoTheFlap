@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class EverybodysDead : AbstractArtState {
 
 	public override void OnBirth(){
+		bBirthed = true;
 		//Time.timeScale = 0f;
 		GameObject.Find("TheOtherStuffYouSometimesSee").GetComponent<Canvas>().enabled = true;
 		GameObject.Find ("ScoreNumber").GetComponent<Text> ().text = GameObject.Find ("Textermucha").GetComponent<Text> ().text;
@@ -14,6 +15,8 @@ public class EverybodysDead : AbstractArtState {
 		GameObject.Find("Square").GetComponent<HappyHippo>().SetScore();
 		int highASfak = GameObject.Find("Square").GetComponent<HappyHippo>().GetHighScore();
 		GameObject.Find ("HighScoreNumber").GetComponent<Text>().text = highASfak.ToString();
+
+		GameObject.Find("Square").GetComponent<HappyHippo>().ResetScore();
         AudioPlayer.instance.EnterLowPass();
 	}
 

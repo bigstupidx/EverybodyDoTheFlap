@@ -9,13 +9,16 @@ public class SecretContolScript : MonoBehaviour {
     void Awake()
     {
         instance = this;
+		if(Application.loadedLevel == 0)
+			PlayerPrefs.SetInt("CurrentGameScore", 0);
+		PlayerPrefs.SetInt("ThisLevelScore", 0);
     }
 
 	void Start () {
 		AudioPlayer.instance.EnterLowPass();
 		if (CurrentStateOfThings is VastAndColdVoid)
 			EstablishStateOfThingsSir(new SilenceBeforeStorm());
-		else 
+		else if(!CurrentStateOfThings.bBirthed)
 			CurrentStateOfThings.OnBirth();
 	}
 
@@ -25,8 +28,7 @@ public class SecretContolScript : MonoBehaviour {
 		CurrentStateOfThings.OnBirth();
 	}
 
-	public void TheWorldShallKnowOurMight()
-	{
+	public void TheWorldShallKnowOurMight()	{
 		EstablishStateOfThingsSir (new ShitGotReal ());
 	}
 
@@ -34,20 +36,35 @@ public class SecretContolScript : MonoBehaviour {
 		EstablishStateOfThingsSir (new EverybodysDead ());
 	}
 
-	private void ThatWasFunLetsDoThatAgain(){
-		CurrentStateOfThings.OnExtermination();
-		CurrentStateOfThings = new ShitGotReal ();
-		Ktch ();
+	public void LetMayhemInsueOnceMore(){
+		EstablishStateOfThingsSir (new MayhemItIsThen ());
 	}
 
-	private void Ktch(){
-        Time.timeScale = 0;
-		Application.LoadLevel (0);
+	private void ThatWasFunLetsDoThatAgain(){
+		CurrentStateOfThings.OnExtermination();
+		CurrentStateOfThings = new VastAndColdVoid();
+		StartLevel(Application.loadedLevel);
+	}
+
+	private void StartLevelOne(){
+		StartLevel(0);
+	}
+
+	private void StartLevel(int levelId){
+		Time.timeScale = 0;
+		Pellet.pelletsAmount = 0;
+		CurrentStateOfThings = new VastAndColdVoid();
+		Application.LoadLevel (levelId);
 	}
 
 	private void WeAreLackingControl(){
 		GameObject.Find ("ControlsButtOn").SetActive(false);
 		GameObject.Find ("Controls").GetComponent<UnityEngine.UI.Text>().enabled = true;
+	}
+
+	public void ANewDayIsComing()
+	{
+		StartLevel(Application.loadedLevel+1);
 	}
 
 	IEnumerator StartUp()
@@ -66,5 +83,10 @@ public class SecretContolScript : MonoBehaviour {
 		}
 		Time.timeScale = 1.0f;
 		yield return null;
+	}
+
+	public void OnLevelWasLoaded(int levelId)
+	{
+
 	}
 }

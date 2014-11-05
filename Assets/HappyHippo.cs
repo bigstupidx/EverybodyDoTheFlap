@@ -13,10 +13,18 @@ public class HappyHippo : MonoBehaviour {
 	void Start()
 	{
 		littleFunnyTail = transform.GetChild(0).GetComponent<Text>();
+		InitStuff();
+	}
+
+	void InitStuff()
+	{
+		PlayerPrefs.SetInt("ThisLevelScore", 0);
+		hugefoot = PlayerPrefs.GetInt("CurrentGameScore", 0);
+		littleFunnyTail.text = hugefoot.ToString();
 	}
 
 	public void Poke(int pitch){
-		hugefoot += 10*pitch;
+		hugefoot += Mathf.Clamp(10*pitch, 10, 100);
 		littleFunnyTail.text = hugefoot.ToString();
 		Boing ();
 	}
@@ -25,8 +33,16 @@ public class HappyHippo : MonoBehaviour {
 		littleFunnyTail.fontSize++;
 	}
 
+	public void ResetScore()
+	{
+		PlayerPrefs.SetInt("CurrentGameScore", hugefoot - PlayerPrefs.GetInt("ThisLevelScore", 0));
+	}
+
 	public void SetScore()
 	{
+		PlayerPrefs.SetInt("ThisLevelScore", hugefoot - PlayerPrefs.GetInt("CurrentGameScore", 0));
+		PlayerPrefs.SetInt("CurrentGameScore", hugefoot);
+
 		int highestScore = PlayerPrefs.GetInt("HighestScore", 0);
 		if(highestScore < hugefoot)
 			PlayerPrefs.SetInt("HighestScore", hugefoot);

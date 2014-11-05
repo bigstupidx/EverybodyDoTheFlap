@@ -16,7 +16,7 @@ public class BigPellet : PickUp
 		
 		Pellet.pelletsAmount--;
 		if (Pellet.pelletsAmount <= 0)
-			GameObject.Find ("Illuminati").SendMessage ("DuckfestComplete");
+			GameObject.Find ("Illuminati").SendMessage ("LetMayhemInsueOnceMore");
 
 		Destroy(gameObject);
     }

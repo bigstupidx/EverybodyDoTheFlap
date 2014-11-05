@@ -14,7 +14,7 @@ public class Pellet : PickUp
 		
 		Pellet.pelletsAmount--;
 		if (Pellet.pelletsAmount <= 0)
-			GameObject.Find ("Illuminati").SendMessage ("DuckfestComplete");
+			GameObject.Find ("Illuminati").SendMessage ("LetMayhemInsueOnceMore");
         
         CFX_SpawnSystem.GetNextObject(particle, true).transform.position = transform.position;
 

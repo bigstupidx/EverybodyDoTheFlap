@@ -7,4 +7,6 @@ public abstract class AbstractArtState {
 	//THE CIIIIIRCLE OF LIIIIIIIIIIFE
 	public abstract void OnBirth();
 	public abstract void OnExtermination();
+
+	public bool bBirthed = false;
 }
