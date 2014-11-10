@@ -28,7 +28,7 @@ public class SecretContolScript : MonoBehaviour {
 		CurrentStateOfThings.OnBirth();
 	}
 
-	public void TheWorldShallKnowOurMight()	{
+	public void StartThisLevelNow()	{
 		EstablishStateOfThingsSir (new ShitGotReal ());
 	}
 
@@ -44,21 +44,21 @@ public class SecretContolScript : MonoBehaviour {
 	IEnumerator StartNextLevelIn(float dillerbat)
 	{
 		yield return new WaitForSeconds(dillerbat);
-		ANewDayIsComing();
+		StartNextLevelNow();
 		yield return null;
 	}
 
-	private void ThatWasFunLetsDoThatAgain(){
+	private void RestartLevel(){
 		CurrentStateOfThings.OnExtermination();
 		CurrentStateOfThings = new VastAndColdVoid();
-		StartLevel(Application.loadedLevel);
+		StartThisLevelNow(Application.loadedLevel);
 	}
 
 	private void StartLevelOne(){
-		StartLevel(0);
+		StartThisLevelNow(0);
 	}
 
-	private void StartLevel(int levelId){
+	private void StartThisLevelNow(int levelId){
 		Time.timeScale = 0;
 		Pellet.pelletsAmount = 0;
 		CurrentStateOfThings = new VastAndColdVoid();
@@ -70,9 +70,9 @@ public class SecretContolScript : MonoBehaviour {
 		GameObject.Find ("Controls").GetComponent<UnityEngine.UI.Text>().enabled = true;
 	}
 
-	public void ANewDayIsComing()
+	public void StartNextLevelNow()
 	{
-		StartLevel(Application.loadedLevel+1);
+		StartThisLevelNow(Application.loadedLevel+1);
 	}
 
 	IEnumerator StartUp()

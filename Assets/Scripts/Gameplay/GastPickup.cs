@@ -73,7 +73,6 @@ public class GastPickup : PickUp
 
     void IMunchedYourAss()
     {
-		GameObject.Find ("The Ant").GetComponent<Text>().text = "You are dead.";
 		GameObject.Find ("Illuminati").SendMessage ("DuckfestComplete");
         GameObject cloud = GameObject.Instantiate( (GameObject) Resources.Load("FightParticle"));
         cloud.transform.position = GameObject.Find("PacMan").transform.position;
