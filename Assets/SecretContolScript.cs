@@ -38,6 +38,14 @@ public class SecretContolScript : MonoBehaviour {
 
 	public void LetMayhemInsueOnceMore(){
 		EstablishStateOfThingsSir (new MayhemItIsThen ());
+		StartCoroutine("StartNextLevelIn", 10f);
+	}
+
+	IEnumerator StartNextLevelIn(float dillerbat)
+	{
+		yield return new WaitForSeconds(dillerbat);
+		ANewDayIsComing();
+		yield return null;
 	}
 
 	private void ThatWasFunLetsDoThatAgain(){
