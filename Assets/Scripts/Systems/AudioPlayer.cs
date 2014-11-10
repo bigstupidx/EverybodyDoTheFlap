@@ -27,9 +27,10 @@ public class AudioPlayer : MonoBehaviour
 
     void Awake()
     {
+		GameObject.DontDestroyOnLoad(this.gameObject);
         //Util.Settings.DisableUnitility();
-        //Util.Settings.DrawLog = false;
         glow = GameObject.FindObjectOfType<GlowEffect>();
+		colorAmp = GameObject.FindObjectOfType<AmplifyColorEffect>();
         targetLowPass = setLowPass;
         currentLowPass = setLowPass;
         targetHighPass = defaultHighPass;
@@ -40,6 +41,14 @@ public class AudioPlayer : MonoBehaviour
 
 		Charlie = GameObject.FindObjectOfType<HappyHippo> ();
     }
+
+	public void OnLevelWasLoaded(int levelId)
+	{
+		glow = GameObject.FindObjectOfType<GlowEffect>();
+		Charlie = GameObject.FindObjectOfType<HappyHippo> ();
+		colorAmp = GameObject.FindObjectOfType<AmplifyColorEffect>();
+	}
+
     // Update is called once per frame
     void Update()
     {

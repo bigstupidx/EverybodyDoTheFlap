@@ -15,6 +15,7 @@ public class SecretContolScript : MonoBehaviour {
     }
 
 	void Start () {
+		//Util.Settings.DrawLog = false;
 		AudioPlayer.instance.EnterLowPass();
 		if (CurrentStateOfThings is VastAndColdVoid)
 			EstablishStateOfThingsSir(new SilenceBeforeStorm());

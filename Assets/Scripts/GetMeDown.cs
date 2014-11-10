@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GetMeDown : MonoBehaviour 
 {
-	public Transform getmeDownObj, getmeDownObj2; 
+	public Transform getmeDownObj2; 
 
 	public void GoDown(float timeToGo)
 	{
