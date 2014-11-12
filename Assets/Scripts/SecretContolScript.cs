@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SecretContolScript : MonoBehaviour {
@@ -39,7 +40,7 @@ public class SecretContolScript : MonoBehaviour {
 
 	public void LetMayhemInsueOnceMore(){
 		EstablishStateOfThingsSir (new MayhemItIsThen ());
-		StartCoroutine("StartNextLevelIn", 10f);
+		StartCoroutine("StartNextLevelIn", 30f);
 	}
 
 	IEnumerator StartNextLevelIn(float dillerbat)
@@ -97,5 +98,16 @@ public class SecretContolScript : MonoBehaviour {
 	public void OnLevelWasLoaded(int levelId)
 	{
 
+	}
+
+	public void NewHighScoreName()
+	{
+		string newName = GameObject.Find("NewFlapName").GetComponent<Text>().text;
+		PlayerPrefs.SetString("HighScoreName", newName);
+		GameObject.Find("UI_newhighscore").GetComponent<Canvas>().enabled = false;
+		if(GameObject.Find("UI_dead").GetComponent<Canvas>().enabled)
+		{
+			GameObject.Find("HighScoreName").GetComponent<Text>().text = newName;
+		}
 	}
 }

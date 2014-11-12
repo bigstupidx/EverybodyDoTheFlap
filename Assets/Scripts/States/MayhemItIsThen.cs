@@ -17,6 +17,7 @@ public class MayhemItIsThen : AbstractArtState {
 		GameObject.Find("ScoreLabel").GetComponent<HappyHippo>().SetScore();
 		int highASfak = GameObject.Find("ScoreLabel").GetComponent<HappyHippo>().GetHighScore();
 		GameObject.Find ("HighScoreNumber").GetComponent<Text>().text = highASfak.ToString();
+		GameObject.Find ("HighScoreName").GetComponent<Text>().text = PlayerPrefs.GetString("HighScoreName", "no one");
 		AudioPlayer.instance.EnterLowPass();
 	}
 	

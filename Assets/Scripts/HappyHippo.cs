@@ -45,7 +45,12 @@ public class HappyHippo : MonoBehaviour {
 
 		int highestScore = PlayerPrefs.GetInt("HighestScore", 0);
 		if(highestScore < hugefoot)
+		{
 			PlayerPrefs.SetInt("HighestScore", hugefoot);
+			GameObject.Find("UI_newhighscore").GetComponent<Canvas>().enabled = true;
+//			GameObject.Find("UI_levelcomplete").GetComponent<Canvas>().enabled = false;
+//			GameObject.Find("UI_dead").GetComponent<Canvas>().enabled = false;
+		}
 	}
 
 	public int GetHighScore()

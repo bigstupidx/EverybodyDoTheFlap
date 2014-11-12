@@ -13,8 +13,10 @@ public class EverybodysDead : AbstractArtState {
         CameraShake.Shake(0.15f, 100000);
 
 		GameObject.Find("ScoreLabel").GetComponent<HappyHippo>().SetScore();
+
 		int highASfak = GameObject.Find("ScoreLabel").GetComponent<HappyHippo>().GetHighScore();
 		GameObject.Find ("HighScoreNumber").GetComponent<Text>().text = highASfak.ToString();
+		GameObject.Find ("HighScoreName").GetComponent<Text>().text = PlayerPrefs.GetString("HighScoreName", "no one");
 
 		GameObject.Find("ScoreLabel").GetComponent<HappyHippo>().ResetScore();
         AudioPlayer.instance.EnterLowPass();
